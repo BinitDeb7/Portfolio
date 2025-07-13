@@ -5,6 +5,15 @@ import { useState, useEffect } from "react";
 
 export default function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
+
+  const roles = [
+    "Full Stack Developer",
+    "AI Enthusiast", 
+    "Problem Solver",
+    "Tech Innovator",
+    "Software Engineer"
+  ];
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -14,6 +23,14 @@ export default function Hero() {
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentRoleIndex((prev) => (prev + 1) % roles.length);
+    }, 3000); // Change every 3 seconds
+
+    return () => clearInterval(interval);
+  }, [roles.length]);
 
   const handleDownloadResume = () => {
     const link = document.createElement('a');
@@ -123,7 +140,18 @@ export default function Hero() {
               >
                 <Code className="h-8 w-8 text-purple-400" />
               </motion.div>
-              <span>Full Stack Developer</span>
+              <div className="relative h-16 flex items-center overflow-hidden">
+                <motion.span
+                  key={currentRoleIndex}
+                  initial={{ y: 50, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: -50, opacity: 0 }}
+                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                  className="absolute whitespace-nowrap"
+                >
+                  {roles[currentRoleIndex]}
+                </motion.span>
+              </div>
               <motion.div
                 animate={{ rotate: [0, -360] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
@@ -199,7 +227,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="flex justify-center space-x-8 mb-16"
+          className="flex justify-center space-x-8 mb-20"
         >
           <motion.a
             href="https://github.com/BinitDeb7"
@@ -249,7 +277,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 1 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          className="absolute bottom-16 left-1/2 transform -translate-x-1/2"
         >
           <motion.div
             animate={{ y: [0, 12, 0] }}

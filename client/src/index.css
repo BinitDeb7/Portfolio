@@ -116,6 +116,18 @@
     animation: shimmer 2s ease-in-out infinite;
   }
 
+  .mouse-trail {
+    position: fixed;
+    pointer-events: none;
+    z-index: 5;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--primary);
+    opacity: 0.6;
+    transition: all 0.1s ease-out;
+  }
+
   .glass-effect {
     background: var(--glass-bg);
     backdrop-filter: blur(20px);

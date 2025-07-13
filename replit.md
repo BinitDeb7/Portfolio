@@ -116,4 +116,16 @@ Preferred communication style: Simple, everyday language.
 - Fallback error handling for email failures
 - HTML email templates for contact form submissions
 
+## Recent Changes
+
+### Latest Updates (January 2025)
+- **Enhanced UI Design**: Added professional glass-morphism effects, gradient colors, and smooth animations throughout the site
+- **Dark Mode Default**: Set dark mode as the default theme with improved color schemes for both light and dark modes
+- **Mouse-Following Animations**: Implemented interactive elements that follow mouse cursor movement in the hero section
+- **Improved Visual Effects**: Added colorful floating particles, hover animations, and gradient text effects
+- **Email Configuration**: Set up Gmail SMTP integration with proper authentication handling
+
+### Current Issues
+- **Email Authentication**: The contact form requires proper Gmail app-specific password configuration. The EMAIL_USER and EMAIL_APP_PASSWORD environment variables need to be set with valid Gmail credentials.
+
 The application is designed to be easily deployable on platforms like Replit, Vercel, or similar hosting providers with PostgreSQL database support.

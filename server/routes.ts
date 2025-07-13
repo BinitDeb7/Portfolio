@@ -19,34 +19,70 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: process.env.EMAIL_USER || 'binitdeb5396@gmail.com',
-          pass: process.env.EMAIL_PASS || process.env.EMAIL_APP_PASSWORD || 'your-app-password'
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_APP_PASSWORD
         }
       });
 
       const mailOptions = {
-        from: contactData.email,
-        to: 'binitdeb5396@gmail.com',
+        from: process.env.EMAIL_USER,
+        to: process.env.EMAIL_USER,
+        replyTo: contactData.email,
         subject: `Portfolio Contact: ${contactData.subject}`,
         html: `
-          <h2>New Contact Form Submission</h2>
-          <p><strong>Name:</strong> ${contactData.name}</p>
-          <p><strong>Email:</strong> ${contactData.email}</p>
-          <p><strong>Subject:</strong> ${contactData.subject}</p>
-          <p><strong>Message:</strong></p>
-          <p>${contactData.message}</p>
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <h2 style="color: #8b5cf6; border-bottom: 2px solid #8b5cf6; padding-bottom: 10px;">New Contact Form Submission</h2>
+            <div style="background: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
+              <p><strong>Name:</strong> ${contactData.name}</p>
+              <p><strong>Email:</strong> ${contactData.email}</p>
+              <p><strong>Subject:</strong> ${contactData.subject}</p>
+            </div>
+            <div style="background: #ffffff; padding: 20px; border-left: 4px solid #8b5cf6; margin: 20px 0;">
+              <h3 style="color: #374151; margin-top: 0;">Message:</h3>
+              <p style="line-height: 1.6; color: #6b7280;">${contactData.message}</p>
+            </div>
+            <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 20px 0;">
+            <p style="color: #9ca3af; font-size: 12px;">This message was sent from your portfolio website contact form.</p>
+          </div>
         `
       };
 
-      await transporter.sendMail(mailOptions);
+      if (process.env.EMAIL_USER && process.env.EMAIL_APP_PASSWORD) {
+        await transporter.sendMail(mailOptions);
+      } else {
+        throw new Error('Email configuration missing');
+      }
       
       res.json({ success: true, message: "Message sent successfully!" });
     } catch (error) {
       console.error('Contact form error:', error);
-      res.status(500).json({ 
-        success: false, 
-        message: "Failed to send message. Please try again or contact directly at binitdeb5396@gmail.com" 
-      });
+      
+      // More specific error handling
+      if (error instanceof Error) {
+        if (error.message.includes('Invalid login') || error.message.includes('Application-specific password')) {
+          console.error('Gmail authentication failed. Please check EMAIL_USER and EMAIL_APP_PASSWORD environment variables.');
+          res.status(500).json({ 
+            success: false, 
+            message: "Email service temporarily unavailable. Please contact directly at binitdeb5396@gmail.com" 
+          });
+        } else if (error.message.includes('Email configuration missing')) {
+          console.error('Email environment variables not configured.');
+          res.status(500).json({ 
+            success: false, 
+            message: "Email service not configured. Please contact directly at binitdeb5396@gmail.com" 
+          });
+        } else {
+          res.status(500).json({ 
+            success: false, 
+            message: "Failed to send message. Please try again or contact directly at binitdeb5396@gmail.com" 
+          });
+        }
+      } else {
+        res.status(500).json({ 
+          success: false, 
+          message: "Failed to send message. Please try again or contact directly at binitdeb5396@gmail.com" 
+        });
+      }
     }
   });
 

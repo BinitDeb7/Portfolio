@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Download, Mail, Github, Linkedin, Twitter, ChevronDown, Code, Globe, Zap } from "lucide-react";
+import { Download, Mail, Github, Linkedin, Twitter, ChevronDown, Code, Globe, Zap, Database, Cpu, Lightbulb, Braces } from "lucide-react";
 import { useState, useEffect } from "react";
 
 export default function Hero() {
@@ -27,7 +27,7 @@ export default function Hero() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentRoleIndex((prev) => (prev + 1) % roles.length);
-    }, 3000); // Change every 3 seconds
+    }, 4000); // Change every 4 seconds
 
     return () => clearInterval(interval);
   }, [roles.length]);
@@ -55,21 +55,21 @@ export default function Hero() {
       </div>
       
       {/* Floating Particles */}
-      {[...Array(25)].map((_, i) => (
+      {[...Array(15)].map((_, i) => (
         <motion.div
           key={i}
           className="absolute w-2 h-2 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full opacity-60"
           animate={{
-            x: [0, Math.random() * 100 - 50, 0],
-            y: [0, Math.random() * 100 - 50, 0],
-            scale: [1, 1.5, 1],
-            opacity: [0.3, 0.8, 0.3],
+            x: [0, Math.random() * 60 - 30, 0],
+            y: [0, Math.random() * 60 - 30, 0],
+            scale: [1, 1.3, 1],
+            opacity: [0.3, 0.7, 0.3],
           }}
           transition={{
-            duration: 4 + Math.random() * 3,
+            duration: 6 + Math.random() * 2,
             repeat: Infinity,
-            delay: Math.random() * 3,
-            ease: "easeInOut",
+            delay: Math.random() * 2,
+            ease: [0.4, 0.0, 0.6, 1],
           }}
           style={{
             left: `${Math.random() * 100}%`,
@@ -78,30 +78,56 @@ export default function Hero() {
         />
       ))}
 
+      {/* Floating Tech Icons */}
+      {[
+        { Icon: Database, position: { top: '20%', left: '10%' }, color: 'text-blue-400' },
+        { Icon: Cpu, position: { top: '30%', right: '15%' }, color: 'text-green-400' },
+        { Icon: Lightbulb, position: { top: '70%', left: '15%' }, color: 'text-yellow-400' },
+        { Icon: Braces, position: { top: '60%', right: '20%' }, color: 'text-orange-400' },
+      ].map(({ Icon, position, color }, i) => (
+        <motion.div
+          key={i}
+          className={`absolute ${color} opacity-20`}
+          style={position}
+          animate={{
+            y: [0, -15, 0],
+            rotate: [0, 360],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{
+            duration: 8 + i * 2,
+            repeat: Infinity,
+            ease: [0.4, 0.0, 0.6, 1],
+          }}
+        >
+          <Icon className="h-8 w-8" />
+        </motion.div>
+      ))}
+
       {/* Mouse-following glowing orbs */}
       <motion.div 
-        className="absolute w-40 h-40 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full blur-xl"
+        className="absolute w-40 h-40 bg-gradient-to-r from-purple-500/15 to-pink-500/15 rounded-full blur-xl"
         animate={{
-          x: mousePosition.x * 0.05,
-          y: mousePosition.y * 0.05,
+          x: mousePosition.x * 0.03,
+          y: mousePosition.y * 0.03,
         }}
-        transition={{ type: "spring", stiffness: 50, damping: 20 }}
+        transition={{ type: "spring", stiffness: 30, damping: 25 }}
       />
       <motion.div 
-        className="absolute w-32 h-32 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-full blur-2xl"
+        className="absolute w-32 h-32 bg-gradient-to-r from-blue-500/15 to-cyan-500/15 rounded-full blur-2xl"
         animate={{
-          x: mousePosition.x * -0.03,
-          y: mousePosition.y * -0.03,
-        }}
-        transition={{ type: "spring", stiffness: 40, damping: 25 }}
-      />
-      <motion.div 
-        className="absolute w-24 h-24 bg-gradient-to-r from-orange-500/20 to-yellow-500/20 rounded-full blur-xl"
-        animate={{
-          x: mousePosition.x * 0.02,
+          x: mousePosition.x * -0.02,
           y: mousePosition.y * -0.02,
         }}
-        transition={{ type: "spring", stiffness: 60, damping: 30 }}
+        transition={{ type: "spring", stiffness: 25, damping: 30 }}
+      />
+      <motion.div 
+        className="absolute w-24 h-24 bg-gradient-to-r from-orange-500/15 to-yellow-500/15 rounded-full blur-xl"
+        animate={{
+          x: mousePosition.x * 0.015,
+          y: mousePosition.y * -0.015,
+        }}
+        transition={{ type: "spring", stiffness: 35, damping: 35 }}
       />
 
       {/* Main content */}
@@ -119,8 +145,8 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-8"
           >
-            <h1 className="text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-extrabold mb-6">
-              <span className="bg-gradient-to-r from-purple-400 via-pink-500 to-orange-500 bg-clip-text text-transparent animate-pulse">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold mb-6">
+              <span className="bg-gradient-to-r from-purple-400 via-pink-500 to-orange-500 bg-clip-text text-transparent">
                 Binit Deb
               </span>
             </h1>
@@ -144,10 +170,10 @@ export default function Hero() {
                 <AnimatePresence mode="wait">
                   <motion.span
                     key={currentRoleIndex}
-                    initial={{ y: 50, opacity: 0 }}
+                    initial={{ y: 30, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: -50, opacity: 0 }}
-                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                    exit={{ y: -30, opacity: 0 }}
+                    transition={{ duration: 0.8, ease: [0.4, 0.0, 0.2, 1] }}
                     className="absolute whitespace-nowrap text-center w-full"
                   >
                     {roles[currentRoleIndex]}

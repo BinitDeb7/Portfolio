@@ -75,17 +75,17 @@ export default function Projects() {
               whileHover={{ scale: 1.02 }}
               className="h-full"
             >
-              <Card className="h-full hover:shadow-2xl transition-all duration-300 border-muted/50 hover:border-primary/50 bg-card/50 backdrop-blur-sm">
+              <Card className="h-full glass-effect hover:shadow-2xl transition-all duration-300 border-primary/20 hover:border-primary/40 hover-lift">
                 <CardHeader>
                   <div className="flex items-center justify-between">
-                    <CardTitle className="text-xl text-primary">{project.title}</CardTitle>
+                    <CardTitle className="text-xl text-gradient">{project.title}</CardTitle>
                     <div className="flex space-x-2">
-                      <Button variant="ghost" size="icon" asChild>
+                      <Button variant="ghost" size="icon" className="hover:bg-primary/20" asChild>
                         <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
                           <ExternalLink className="h-4 w-4" />
                         </a>
                       </Button>
-                      <Button variant="ghost" size="icon" asChild>
+                      <Button variant="ghost" size="icon" className="hover:bg-primary/20" asChild>
                         <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
                           <Github className="h-4 w-4" />
                         </a>

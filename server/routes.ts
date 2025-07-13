@@ -4,6 +4,7 @@ import { storage } from "./storage";
 import { insertContactSchema } from "@shared/schema";
 import { z } from "zod";
 import nodemailer from "nodemailer";
+import path from "path";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Contact form submission
@@ -15,7 +16,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const contact = await storage.createContact(contactData);
       
       // Send email using Nodemailer
-      const transporter = nodemailer.createTransporter({
+      const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
           user: process.env.EMAIL_USER || 'binitdeb5396@gmail.com',
@@ -51,9 +52,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Resume download endpoint
   app.get("/api/resume", (req, res) => {
-    const resumePath = path.join(__dirname, "../client/public/resume.pdf");
+    const resumePath = path.join(process.cwd(), "client/public/resume.pdf");
     res.download(resumePath, "Binit_Deb_Resume.pdf", (err) => {
       if (err) {
+        console.error('Resume download error:', err);
         res.status(404).json({ message: "Resume not found" });
       }
     });

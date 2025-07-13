@@ -13,16 +13,27 @@
   --card-foreground: hsl(240, 10%, 3.9%);
   --border: hsl(240, 5.9%, 90%);
   --input: hsl(240, 5.9%, 90%);
-  --primary: hsl(207, 90%, 54%);
+  --primary: hsl(271, 91%, 65%);
   --primary-foreground: hsl(0, 0%, 98%);
-  --secondary: hsl(240, 4.8%, 95.9%);
+  --secondary: hsl(210, 40%, 94%);
   --secondary-foreground: hsl(240, 5.9%, 10%);
-  --accent: hsl(240, 4.8%, 95.9%);
+  --accent: hsl(210, 40%, 94%);
   --accent-foreground: hsl(240, 5.9%, 10%);
   --destructive: hsl(0, 84.2%, 60.2%);
   --destructive-foreground: hsl(0, 0%, 98%);
-  --ring: hsl(240, 5.9%, 10%);
+  --ring: hsl(271, 91%, 65%);
   --radius: 0.5rem;
+  
+  /* Custom gradient colors */
+  --gradient-primary: linear-gradient(135deg, hsl(271, 91%, 65%) 0%, hsl(207, 90%, 54%) 100%);
+  --gradient-secondary: linear-gradient(135deg, hsl(166, 100%, 37%) 0%, hsl(199, 89%, 48%) 100%);
+  --gradient-accent: linear-gradient(135deg, hsl(43, 96%, 56%) 0%, hsl(25, 95%, 53%) 100%);
+  --gradient-success: linear-gradient(135deg, hsl(142, 69%, 58%) 0%, hsl(158, 64%, 52%) 100%);
+  
+  /* Glass effect colors */
+  --glass-bg: hsla(0, 0%, 100%, 0.1);
+  --glass-border: hsla(0, 0%, 100%, 0.2);
+  --glass-shadow: hsla(0, 0%, 0%, 0.1);
 }
 
 .dark {
@@ -36,7 +47,7 @@
   --card-foreground: hsl(0, 0%, 98%);
   --border: hsl(240, 3.7%, 15.9%);
   --input: hsl(240, 3.7%, 15.9%);
-  --primary: hsl(207, 90%, 54%);
+  --primary: hsl(271, 91%, 65%);
   --primary-foreground: hsl(0, 0%, 98%);
   --secondary: hsl(240, 3.7%, 15.9%);
   --secondary-foreground: hsl(0, 0%, 98%);
@@ -44,7 +55,18 @@
   --accent-foreground: hsl(0, 0%, 98%);
   --destructive: hsl(0, 62.8%, 30.6%);
   --destructive-foreground: hsl(0, 0%, 98%);
-  --ring: hsl(240, 4.9%, 83.9%);
+  --ring: hsl(271, 91%, 65%);
+  
+  /* Custom gradient colors for dark mode */
+  --gradient-primary: linear-gradient(135deg, hsl(271, 91%, 65%) 0%, hsl(207, 90%, 54%) 100%);
+  --gradient-secondary: linear-gradient(135deg, hsl(166, 100%, 37%) 0%, hsl(199, 89%, 48%) 100%);
+  --gradient-accent: linear-gradient(135deg, hsl(43, 96%, 56%) 0%, hsl(25, 95%, 53%) 100%);
+  --gradient-success: linear-gradient(135deg, hsl(142, 69%, 58%) 0%, hsl(158, 64%, 52%) 100%);
+  
+  /* Glass effect colors for dark mode */
+  --glass-bg: hsla(0, 0%, 100%, 0.05);
+  --glass-border: hsla(0, 0%, 100%, 0.1);
+  --glass-shadow: hsla(0, 0%, 0%, 0.3);
 }
 
 @layer base {
@@ -82,6 +104,57 @@
     animation: slideInRight 0.8s ease-out;
   }
 
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  .animate-bounce-gentle {
+    animation: bounce-gentle 2s infinite;
+  }
+
+  .animate-shimmer {
+    animation: shimmer 2s ease-in-out infinite;
+  }
+
+  .glass-effect {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px var(--glass-shadow);
+  }
+
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .gradient-secondary {
+    background: var(--gradient-secondary);
+  }
+
+  .gradient-accent {
+    background: var(--gradient-accent);
+  }
+
+  .gradient-success {
+    background: var(--gradient-success);
+  }
+
+  .text-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hover-lift {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px var(--glass-shadow);
+  }
+
   @keyframes float {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-10px); }
@@ -105,6 +178,21 @@
   @keyframes slideInRight {
     0% { opacity: 0; transform: translateX(30px); }
     100% { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes glow {
+    0% { box-shadow: 0 0 20px var(--primary); }
+    100% { box-shadow: 0 0 30px var(--primary), 0 0 40px var(--primary); }
+  }
+
+  @keyframes bounce-gentle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
   }
 }
 

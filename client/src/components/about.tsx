@@ -73,7 +73,7 @@ export default function About() {
           >
             <h3 className="text-2xl font-semibold mb-6">Experience</h3>
             <div className="space-y-6">
-              <div className="border-l-4 border-primary pl-6 py-4 bg-card/50 rounded-r-lg">
+              <div className="glass-effect border-l-4 border-primary pl-6 py-4 rounded-r-lg hover-lift">
                 <h4 className="text-lg font-semibold text-primary">Web Development Intern</h4>
                 <p className="text-muted-foreground font-medium">Myjobgrow • July 2024 - November 2024</p>
                 <ul className="text-muted-foreground mt-2 space-y-1 text-sm">
@@ -84,8 +84,8 @@ export default function About() {
                 </ul>
               </div>
 
-              <div className="border-l-4 border-secondary pl-6 py-4 bg-card/50 rounded-r-lg">
-                <h4 className="text-lg font-semibold text-secondary">Education</h4>
+              <div className="glass-effect border-l-4 border-gradient-secondary pl-6 py-4 rounded-r-lg hover-lift">
+                <h4 className="text-lg font-semibold text-gradient">Education</h4>
                 <p className="text-muted-foreground font-medium">Assam Downtown University • 2022-2026</p>
                 <p className="text-muted-foreground mt-2 text-sm">B.Tech in Computer Science & Engineering</p>
               </div>

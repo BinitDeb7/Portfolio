@@ -94,10 +94,10 @@ export default function Skills() {
                   transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
                   whileHover={{ scale: 1.05 }}
                 >
-                  <Card className="hover:shadow-lg transition-all duration-300 bg-card/50 backdrop-blur-sm border-muted/50 hover:border-primary/50">
+                  <Card className="glass-effect hover:shadow-lg transition-all duration-300 border-primary/20 hover:border-primary/40 hover-lift">
                     <CardContent className="p-4">
                       <div className="flex items-center space-x-3">
-                        <tech.icon className={`text-2xl ${tech.color}`} />
+                        <tech.icon className={`text-2xl ${tech.color} animate-bounce-gentle`} />
                         <span className="font-medium">{tech.name}</span>
                       </div>
                     </CardContent>

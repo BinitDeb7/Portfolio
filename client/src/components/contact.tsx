@@ -106,7 +106,7 @@ export default function Contact() {
                   transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
                   className="flex items-center space-x-4"
                 >
-                  <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${info.color}`}>
+                  <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${info.color} animate-bounce-gentle`}>
                     <info.icon className="h-5 w-5" />
                   </div>
                   <div>
@@ -144,9 +144,9 @@ export default function Contact() {
             animate={isVisible ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <Card className="bg-card/50 backdrop-blur-sm border-muted/50">
+            <Card className="glass-effect border-primary/20 hover:border-primary/40 hover-lift">
               <CardHeader>
-                <CardTitle>Send a Message</CardTitle>
+                <CardTitle className="text-gradient">Send a Message</CardTitle>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -157,7 +157,7 @@ export default function Contact() {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="bg-background/50"
+                      className="glass-effect border-primary/20 focus:border-primary/40"
                     />
                   </div>
                   <div>
@@ -168,7 +168,7 @@ export default function Contact() {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="bg-background/50"
+                      className="glass-effect border-primary/20 focus:border-primary/40"
                     />
                   </div>
                   <div>
@@ -178,7 +178,7 @@ export default function Contact() {
                       value={formData.subject}
                       onChange={handleChange}
                       required
-                      className="bg-background/50"
+                      className="glass-effect border-primary/20 focus:border-primary/40"
                     />
                   </div>
                   <div>
@@ -189,12 +189,12 @@ export default function Contact() {
                       onChange={handleChange}
                       required
                       rows={5}
-                      className="bg-background/50 resize-none"
+                      className="glass-effect border-primary/20 focus:border-primary/40 resize-none"
                     />
                   </div>
                   <Button
                     type="submit"
-                    className="w-full"
+                    className="w-full gradient-primary text-white hover:opacity-90 transform hover:scale-105 transition-all duration-300"
                     disabled={contactMutation.isPending}
                   >
                     {contactMutation.isPending ? (

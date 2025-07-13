@@ -42,7 +42,7 @@ export default function Navigation() {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border"
+      className="fixed top-0 left-0 right-0 z-50 glass-effect border-b border-primary/20"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
@@ -50,9 +50,9 @@ export default function Navigation() {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-xl font-bold text-primary"
+            className="text-xl font-bold"
           >
-            <span className="animate-pulse-soft">BD</span>
+            <span className="text-gradient animate-glow">BD</span>
           </motion.div>
 
           {/* Desktop Navigation */}
@@ -64,9 +64,9 @@ export default function Navigation() {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
-                className={`text-sm font-medium transition-colors duration-200 hover:text-primary ${
+                className={`text-sm font-medium transition-all duration-300 hover:text-primary hover:scale-105 ${
                   activeSection === item.href.slice(1)
-                    ? "text-primary"
+                    ? "text-primary font-semibold"
                     : "text-muted-foreground"
                 }`}
               >

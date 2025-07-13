@@ -280,7 +280,7 @@ export default function Hero() {
           </motion.a>
           
           <motion.a
-            href="https://twitter.com/BinitDeb7"
+            href="https://twitter.com/binit_deb7"
             target="_blank"
             rel="noopener noreferrer"
             className="group flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-sky-500/20 to-sky-600/20 hover:from-sky-400/30 hover:to-sky-500/30 border border-sky-500/20 hover:border-sky-400/40 transition-all duration-300 shadow-lg hover:shadow-xl"

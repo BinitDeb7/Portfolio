@@ -18,7 +18,7 @@ export default function Projects() {
         "Real-time activity monitoring with adaptive feedback",
         "Machine learning integration for enhanced accuracy"
       ],
-      technologies: ["Next.js", "AI/ML", "Data Visualization", "React"],
+      technologies: ["Next.js", "ConvexDB", "Gemini AI", "VAPI"],
       liveUrl: "https://ai-fitness-trainer-zeta.vercel.app/",
       githubUrl: "https://github.com/BinitDeb7",
       colors: {

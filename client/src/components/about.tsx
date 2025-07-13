@@ -95,17 +95,7 @@ export default function About() {
                       ))}
                     </div>
                   </div>
-                  <div>
-                    <h4 className="font-medium text-foreground mb-2">Technologies & Tools</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {resumeData.skills.technical.slice(6).map((skill, index) => (
-                        <span key={index} className="px-3 py-1 bg-secondary/10 text-secondary text-sm rounded-full">
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
                   </div>
-                </div>
               </CardContent>
             </Card>
 

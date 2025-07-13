@@ -15,11 +15,10 @@ export const resumeData = {
       location: "Virtual",
       duration: "July 2024 - November 2024",
       responsibilities: [
-        "Participated in developing and maintaining web applications using HTML, CSS, and JavaScript, contributing to ongoing project enhancements.",
-        "Participated in front-end development efforts by designing user interfaces using HTML, CSS, and JavaScript, with a focus on improving website features.",
-        "Assisted in developing and maintaining web applications using HTML, CSS, and JavaScript, applying knowledge of frameworks such as React and Angular to improve front-end performance.",
-        "Contributed to collaborative projects by coordinating with developers to address project goals and adhere to technical requirements using JavaScript and React.",
-        "Enhanced cross-browser compatibility by testing and refining web applications, ensuring consistent user experiences across multiple platforms."
+        "Developed and maintained web applications using HTML, CSS, and JavaScript",
+        "Worked on front-end development with React and Angular frameworks",
+        "Enhanced cross-browser compatibility and user experience",
+        "Collaborated with development team on project goals and technical requirements"
       ]
     }
   ],

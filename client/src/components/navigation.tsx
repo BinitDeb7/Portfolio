@@ -12,6 +12,7 @@ export default function Navigation() {
   const navItems = [
     { href: "#home", label: "Home" },
     { href: "#about", label: "About" },
+    { href: "#education", label: "Education" },
     { href: "#projects", label: "Projects" },
     { href: "#skills", label: "Skills" },
     { href: "#contact", label: "Contact" },
@@ -19,7 +20,7 @@ export default function Navigation() {
 
   useEffect(() => {
     const updateActiveSection = () => {
-      const sections = ["home", "about", "projects", "skills", "contact"];
+      const sections = ["home", "about", "education", "projects", "skills", "contact"];
       const currentSection = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {

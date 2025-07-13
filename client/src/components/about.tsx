@@ -1,13 +1,15 @@
 import { motion } from "framer-motion";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
-import { MapPin, GraduationCap, Github, Linkedin, Mail } from "lucide-react";
+import { MapPin, Download, Github, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { resumeData } from "@/data/resume-data";
 
 export default function About() {
   const { ref, isVisible } = useScrollAnimation();
 
   return (
-    <section id="about" className="py-20 bg-muted/50">
+    <section id="about" className="py-20 bg-muted/50 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -15,81 +17,123 @@ export default function About() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold mb-4 text-primary">About Me</h2>
-          <div className="w-24 h-1 bg-primary mx-auto rounded-full" />
+          <h2 className="text-4xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-orange-500 bg-clip-text text-transparent mb-4">
+            About Me
+          </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-pink-500 mx-auto rounded-full" />
         </motion.div>
 
-        <div ref={ref} className="grid md:grid-cols-2 gap-12 items-center">
+        <div ref={ref} className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={isVisible ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h3 className="text-2xl font-semibold mb-6">Professional Summary</h3>
-            <p className="text-muted-foreground mb-6 leading-relaxed">
-              I'm a passionate Full Stack Developer with expertise in modern web technologies. 
-              Currently pursuing B.Tech in Computer Science & Engineering at Assam Downtown University, 
-              I excel both independently and in collaboration with teams, consistently surpassing expectations.
-            </p>
-            <p className="text-muted-foreground mb-6 leading-relaxed">
-              My recent internship at Myjobgrow enhanced my skills in React, Node.js, and modern web development practices. 
-              I'm passionate about creating efficient, scalable solutions and staying updated with the latest technology trends.
-            </p>
+            <Card className="bg-card/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition-all duration-300">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-semibold mb-6 text-foreground">
+                  Professional Summary
+                </h3>
+                <p className="text-muted-foreground mb-6 leading-relaxed">
+                  {resumeData.summary}
+                </p>
+                
+                <div className="flex flex-wrap gap-4 mb-8">
+                  <div className="flex items-center text-muted-foreground">
+                    <MapPin className="h-4 w-4 text-primary mr-2" />
+                    <span>{resumeData.personalInfo.location}</span>
+                  </div>
+                  <div className="flex items-center text-muted-foreground">
+                    <Mail className="h-4 w-4 text-primary mr-2" />
+                    <span>{resumeData.personalInfo.email}</span>
+                  </div>
+                </div>
 
-            <div className="flex flex-wrap gap-4 mb-8">
-              <div className="flex items-center text-muted-foreground">
-                <MapPin className="h-4 w-4 text-primary mr-2" />
-                <span>Guwahati, Assam, India</span>
-              </div>
-              <div className="flex items-center text-muted-foreground">
-                <GraduationCap className="h-4 w-4 text-primary mr-2" />
-                <span>B.Tech CSE (2022-2026)</span>
-              </div>
-            </div>
-
-            <div className="flex space-x-4">
-              <Button variant="ghost" size="icon" asChild>
-                <a href="https://github.com/BinitDeb7" target="_blank" rel="noopener noreferrer">
-                  <Github className="h-5 w-5" />
-                </a>
-              </Button>
-              <Button variant="ghost" size="icon" asChild>
-                <a href="https://linkedin.com/in/binitdeb" target="_blank" rel="noopener noreferrer">
-                  <Linkedin className="h-5 w-5" />
-                </a>
-              </Button>
-              <Button variant="ghost" size="icon" asChild>
-                <a href="mailto:binitdeb5396@gmail.com">
-                  <Mail className="h-5 w-5" />
-                </a>
-              </Button>
-            </div>
+                <div className="flex flex-wrap gap-4">
+                  <Button variant="outline" size="sm" asChild className="bg-primary/10 hover:bg-primary/20 border-primary/20">
+                    <a href="https://github.com/BinitDeb7" target="_blank" rel="noopener noreferrer">
+                      <Github className="h-4 w-4 mr-2" />
+                      GitHub
+                    </a>
+                  </Button>
+                  <Button variant="outline" size="sm" asChild className="bg-primary/10 hover:bg-primary/20 border-primary/20">
+                    <a href="https://linkedin.com/in/binitdeb" target="_blank" rel="noopener noreferrer">
+                      <Linkedin className="h-4 w-4 mr-2" />
+                      LinkedIn
+                    </a>
+                  </Button>
+                  <Button variant="outline" size="sm" asChild className="bg-primary/10 hover:bg-primary/20 border-primary/20">
+                    <a href="/resume.pdf" download>
+                      <Download className="h-4 w-4 mr-2" />
+                      Resume
+                    </a>
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={isVisible ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
+            className="space-y-6"
           >
-            <h3 className="text-2xl font-semibold mb-6">Experience</h3>
-            <div className="space-y-6">
-              <div className="glass-effect border-l-4 border-primary pl-6 py-4 rounded-r-lg hover-lift">
-                <h4 className="text-lg font-semibold text-primary">Web Development Intern</h4>
-                <p className="text-muted-foreground font-medium">Myjobgrow • July 2024 - November 2024</p>
-                <ul className="text-muted-foreground mt-2 space-y-1 text-sm">
-                  <li>• Developed and maintained web applications using React and JavaScript</li>
-                  <li>• Enhanced cross-browser compatibility and user experience</li>
-                  <li>• Collaborated with development teams on technical requirements</li>
-                  <li>• Contributed to front-end performance improvements</li>
-                </ul>
-              </div>
+            <Card className="bg-card/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition-all duration-300 group">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-semibold mb-6 text-foreground group-hover:text-primary transition-colors">
+                  Technical Skills
+                </h3>
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="font-medium text-foreground mb-2">Programming Languages</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {resumeData.skills.technical.slice(0, 6).map((skill, index) => (
+                        <span key={index} className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-foreground mb-2">Technologies & Tools</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {resumeData.skills.technical.slice(6).map((skill, index) => (
+                        <span key={index} className="px-3 py-1 bg-secondary/10 text-secondary text-sm rounded-full">
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
 
-              <div className="glass-effect border-l-4 border-gradient-secondary pl-6 py-4 rounded-r-lg hover-lift">
-                <h4 className="text-lg font-semibold text-gradient">Education</h4>
-                <p className="text-muted-foreground font-medium">Assam Downtown University • 2022-2026</p>
-                <p className="text-muted-foreground mt-2 text-sm">B.Tech in Computer Science & Engineering</p>
-              </div>
-            </div>
+            <Card className="bg-card/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition-all duration-300 group">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-semibold mb-6 text-foreground group-hover:text-primary transition-colors">
+                  Quick Facts
+                </h3>
+                <div className="grid grid-cols-2 gap-4 text-sm">
+                  <div>
+                    <p className="text-muted-foreground">Current Status</p>
+                    <p className="font-medium text-foreground">B.Tech Student</p>
+                  </div>
+                  <div>
+                    <p className="text-muted-foreground">Graduation</p>
+                    <p className="font-medium text-foreground">2026</p>
+                  </div>
+                  <div>
+                    <p className="text-muted-foreground">Focus Area</p>
+                    <p className="font-medium text-foreground">Full Stack Development</p>
+                  </div>
+                  <div>
+                    <p className="text-muted-foreground">Experience</p>
+                    <p className="font-medium text-foreground">Internship + Projects</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </motion.div>
         </div>
       </div>

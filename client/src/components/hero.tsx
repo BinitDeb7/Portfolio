@@ -12,7 +12,7 @@ export default function Hero() {
     "AI Enthusiast", 
     "Problem Solver",
     "Tech Innovator",
-    "Software Engineer"
+    "Data Analyst"
   ];
 
   useEffect(() => {
@@ -140,7 +140,7 @@ export default function Hero() {
               >
                 <Code className="h-8 w-8 text-purple-400" />
               </motion.div>
-              <div className="relative h-16 flex items-center overflow-hidden min-w-[300px]">
+              <div className="relative h-16 flex items-center justify-center overflow-hidden min-w-[400px] sm:min-w-[500px] lg:min-w-[600px]">
                 <AnimatePresence mode="wait">
                   <motion.span
                     key={currentRoleIndex}
